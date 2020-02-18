@@ -6,10 +6,7 @@ import com.ashraymehta.rockpaperscissors.players.PlayerSelectionComparator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.spotify.hamcrest.optional.OptionalMatchers.emptyOptional;
-import static com.spotify.hamcrest.optional.OptionalMatchers.optionalWithValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
@@ -41,9 +38,9 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.ROCK)).thenReturn(0);
 
-        final var winner = game.determineWinner(firstPlayer, secondPlayer);
+        final var gameSummary = game.determineWinner(firstPlayer, secondPlayer);
 
-        assertThat(winner, is(emptyOptional()));
+        assertThat(gameSummary, is(new GameSummary(null)));
     }
 
     @Test
@@ -52,9 +49,9 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.SCISSORS);
         when(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.SCISSORS)).thenReturn(1);
 
-        final var winner = game.determineWinner(firstPlayer, secondPlayer);
+        final var gameSummary = game.determineWinner(firstPlayer, secondPlayer);
 
-        assertThat(winner, is(optionalWithValue(equalTo(firstPlayer))));
+        assertThat(gameSummary, is(new GameSummary(firstPlayer)));
     }
 
     @Test
@@ -63,8 +60,8 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(playerSelectionComparator.compare(PlayerSelection.SCISSORS, PlayerSelection.ROCK)).thenReturn(-1);
 
-        final var winner = game.determineWinner(firstPlayer, secondPlayer);
+        final var gameSummary = game.determineWinner(firstPlayer, secondPlayer);
 
-        assertThat(winner, is(optionalWithValue(equalTo(secondPlayer))));
+        assertThat(gameSummary, is(new GameSummary(secondPlayer)));
     }
 }

@@ -32,4 +32,11 @@ class PlayerSelectionComparatorTest {
         assertThat(playerSelectionComparator.compare(PlayerSelection.SCISSORS, PlayerSelection.PAPER), is(1));
         assertThat(playerSelectionComparator.compare(PlayerSelection.PAPER, PlayerSelection.SCISSORS), is(-1));
     }
+
+    @Test
+    void shouldComparePlayerSelectionToItself() {
+        assertThat(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.ROCK), is(0));
+        assertThat(playerSelectionComparator.compare(PlayerSelection.PAPER, PlayerSelection.PAPER), is(0));
+        assertThat(playerSelectionComparator.compare(PlayerSelection.SCISSORS, PlayerSelection.SCISSORS), is(0));
+    }
 }

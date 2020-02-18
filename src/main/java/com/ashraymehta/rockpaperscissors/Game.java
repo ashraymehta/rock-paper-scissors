@@ -16,6 +16,6 @@ public class Game {
     public Optional<Player> start() {
         firstPlayer.play();
         secondPlayer.play();
-        return null;
+        return Optional.empty();
     }
 }

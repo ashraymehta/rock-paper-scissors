@@ -8,4 +8,9 @@ public abstract class Player {
     }
 
     public abstract PlayerSelection play();
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

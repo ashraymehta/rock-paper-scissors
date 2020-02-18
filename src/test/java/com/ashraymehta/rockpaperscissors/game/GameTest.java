@@ -26,7 +26,7 @@ class GameTest {
 
     @Test
     void shouldAskFirstPlayerAndSecondPlayerToPlay() {
-        game.determineWinner(firstPlayer, secondPlayer);
+        game.start(firstPlayer, secondPlayer);
 
         verify(firstPlayer, times(1)).play();
         verify(secondPlayer, times(1)).play();
@@ -38,7 +38,7 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.ROCK)).thenReturn(0);
 
-        final var gameSummary = game.determineWinner(firstPlayer, secondPlayer);
+        final var gameSummary = game.start(firstPlayer, secondPlayer);
 
         assertThat(gameSummary, is(new GameSummary(null)));
     }
@@ -49,7 +49,7 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.SCISSORS);
         when(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.SCISSORS)).thenReturn(1);
 
-        final var gameSummary = game.determineWinner(firstPlayer, secondPlayer);
+        final var gameSummary = game.start(firstPlayer, secondPlayer);
 
         assertThat(gameSummary, is(new GameSummary(firstPlayer)));
     }
@@ -60,7 +60,7 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(playerSelectionComparator.compare(PlayerSelection.SCISSORS, PlayerSelection.ROCK)).thenReturn(-1);
 
-        final var gameSummary = game.determineWinner(firstPlayer, secondPlayer);
+        final var gameSummary = game.start(firstPlayer, secondPlayer);
 
         assertThat(gameSummary, is(new GameSummary(secondPlayer)));
     }

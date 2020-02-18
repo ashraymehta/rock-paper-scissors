@@ -10,7 +10,7 @@ public class Game {
         this.playerSelectionComparator = playerSelectionComparator;
     }
 
-    public GameSummary determineWinner(Player firstPlayer, Player secondPlayer) {
+    public GameSummary start(Player firstPlayer, Player secondPlayer) {
         final var comparisonResult = playerSelectionComparator.compare(firstPlayer.play(), secondPlayer.play());
         if (comparisonResult > 0) {
             return new GameSummary(firstPlayer);

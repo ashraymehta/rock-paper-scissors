@@ -30,4 +30,23 @@ public class GameSummary {
     public int hashCode() {
         return Objects.hash(winner, selections);
     }
+
+    @Override
+    public String toString() {
+        final var stringBuilder = new StringBuilder();
+
+        selections.forEach((key, value) -> {
+            final var playerName = key.toString();
+            stringBuilder.append(playerName)
+                    .append(" selected: ")
+                    .append(value)
+                    .append(System.lineSeparator());
+        });
+
+        stringBuilder.append("Winner: ")
+                .append(winner.toString())
+                .append("!");
+
+        return stringBuilder.toString();
+    }
 }

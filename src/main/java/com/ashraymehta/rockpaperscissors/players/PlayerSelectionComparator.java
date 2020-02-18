@@ -6,7 +6,8 @@ import java.util.Map;
 public class PlayerSelectionComparator implements Comparator<PlayerSelection> {
     private static final Map<PlayerSelection, PlayerSelection> WHO_BEATS_WHOM = Map.of(
             PlayerSelection.ROCK, PlayerSelection.SCISSORS,
-            PlayerSelection.PAPER, PlayerSelection.ROCK
+            PlayerSelection.PAPER, PlayerSelection.ROCK,
+            PlayerSelection.SCISSORS, PlayerSelection.PAPER
     );
 
     @Override

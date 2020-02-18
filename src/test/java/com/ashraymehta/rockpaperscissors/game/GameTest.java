@@ -28,6 +28,9 @@ class GameTest {
 
     @Test
     void shouldAskFirstPlayerAndSecondPlayerToPlay() {
+        when(firstPlayer.play()).thenReturn(PlayerSelection.PAPER);
+        when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
+
         game.start(firstPlayer, secondPlayer);
 
         verify(firstPlayer, times(1)).play();

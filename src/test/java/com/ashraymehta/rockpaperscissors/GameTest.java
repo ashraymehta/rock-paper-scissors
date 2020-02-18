@@ -56,4 +56,15 @@ class GameTest {
 
         assertThat(winner, is(optionalWithValue(equalTo(firstPlayer))));
     }
+
+    @Test
+    void shouldDetermineTheWinnerAsSecondPlayerIfTheSecondPlayerBeatsTheFirstPlayer() {
+        when(firstPlayer.play()).thenReturn(PlayerSelection.SCISSORS);
+        when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
+        when(playerSelectionComparator.compare(PlayerSelection.SCISSORS, PlayerSelection.ROCK)).thenReturn(-1);
+
+        final var winner = game.start();
+
+        assertThat(winner, is(optionalWithValue(equalTo(secondPlayer))));
+    }
 }

@@ -10,10 +10,6 @@ import com.ashraymehta.rockpaperscissors.players.RockingPlayer;
 import java.util.Random;
 
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
-
     public static void main(String[] args) {
         final var gameRunner = new GameRunner(new Game(new PlayerSelectionComparator()), new Console());
         gameRunner.run(new RockingPlayer("Player 1"), new RandomPlayer("Player 2", new Random()));

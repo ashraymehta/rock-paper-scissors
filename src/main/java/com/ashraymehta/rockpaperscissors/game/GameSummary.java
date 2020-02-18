@@ -43,9 +43,12 @@ public class GameSummary {
                     .append(System.lineSeparator());
         });
 
-        stringBuilder.append("Winner: ")
-                .append(winner.toString())
-                .append("!");
+        stringBuilder.append("Winner: ");
+        if (!Objects.isNull(winner)) {
+            stringBuilder.append(winner.toString()).append("!");
+        } else {
+            stringBuilder.append("Nobody won");
+        }
 
         return stringBuilder.toString();
     }

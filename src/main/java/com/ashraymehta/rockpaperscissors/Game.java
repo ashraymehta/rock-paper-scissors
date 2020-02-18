@@ -6,17 +6,13 @@ import com.ashraymehta.rockpaperscissors.players.PlayerSelectionComparator;
 import java.util.Optional;
 
 public class Game {
-    private final Player firstPlayer;
-    private final Player secondPlayer;
     private final PlayerSelectionComparator playerSelectionComparator;
 
-    public Game(Player firstPlayer, Player secondPlayer, PlayerSelectionComparator playerSelectionComparator) {
-        this.firstPlayer = firstPlayer;
-        this.secondPlayer = secondPlayer;
+    public Game(PlayerSelectionComparator playerSelectionComparator) {
         this.playerSelectionComparator = playerSelectionComparator;
     }
 
-    public Optional<Player> start() {
+    public Optional<Player> start(Player firstPlayer, Player secondPlayer) {
         final var comparisonResult = playerSelectionComparator.compare(firstPlayer.play(), secondPlayer.play());
         if (comparisonResult > 0) {
             return Optional.of(firstPlayer);

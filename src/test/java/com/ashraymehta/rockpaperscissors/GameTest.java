@@ -24,12 +24,12 @@ class GameTest {
         firstPlayer = mock(Player.class);
         secondPlayer = mock(Player.class);
         playerSelectionComparator = mock(PlayerSelectionComparator.class);
-        game = new Game(firstPlayer, secondPlayer, playerSelectionComparator);
+        game = new Game(playerSelectionComparator);
     }
 
     @Test
     void shouldAskFirstPlayerAndSecondPlayerToPlay() {
-        game.start();
+        game.start(firstPlayer, secondPlayer);
 
         verify(firstPlayer, times(1)).play();
         verify(secondPlayer, times(1)).play();
@@ -41,7 +41,7 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.ROCK)).thenReturn(0);
 
-        final var winner = game.start();
+        final var winner = game.start(firstPlayer, secondPlayer);
 
         assertThat(winner, is(emptyOptional()));
     }
@@ -52,7 +52,7 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.SCISSORS);
         when(playerSelectionComparator.compare(PlayerSelection.ROCK, PlayerSelection.SCISSORS)).thenReturn(1);
 
-        final var winner = game.start();
+        final var winner = game.start(firstPlayer, secondPlayer);
 
         assertThat(winner, is(optionalWithValue(equalTo(firstPlayer))));
     }
@@ -63,7 +63,7 @@ class GameTest {
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(playerSelectionComparator.compare(PlayerSelection.SCISSORS, PlayerSelection.ROCK)).thenReturn(-1);
 
-        final var winner = game.start();
+        final var winner = game.start(firstPlayer, secondPlayer);
 
         assertThat(winner, is(optionalWithValue(equalTo(secondPlayer))));
     }

@@ -1,5 +1,11 @@
 package com.ashraymehta.rockpaperscissors.players;
 
-public interface Player {
-    PlayerSelection play();
+public abstract class Player {
+    private final String name;
+
+    protected Player(String name) {
+        this.name = name;
+    }
+
+    public abstract PlayerSelection play();
 }

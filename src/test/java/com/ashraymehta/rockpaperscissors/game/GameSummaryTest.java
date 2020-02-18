@@ -16,8 +16,8 @@ class GameSummaryTest {
 
     @Test
     void shouldEquateGameSummaryWithAnotherGameSummary() {
-        final var winner = new RockingPlayer();
-        final var anotherPlayer = new RockingPlayer();
+        final var winner = new RockingPlayer("Player 1");
+        final var anotherPlayer = new RockingPlayer("Player 2");
         final var selections = Map.of(
                 ((Player) winner), PlayerSelection.ROCK,
                 anotherPlayer, PlayerSelection.SCISSORS

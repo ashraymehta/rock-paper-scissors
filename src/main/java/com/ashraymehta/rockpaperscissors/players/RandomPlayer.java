@@ -2,10 +2,11 @@ package com.ashraymehta.rockpaperscissors.players;
 
 import java.util.Random;
 
-public class RandomPlayer implements Player {
+public class RandomPlayer extends Player {
     private final Random random;
 
-    public RandomPlayer(Random random) {
+    public RandomPlayer(String name, Random random) {
+        super(name);
         this.random = random;
     }
 

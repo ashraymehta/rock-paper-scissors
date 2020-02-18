@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-class RockingPlayerTest {
+class PlayerTest {
     @Test
-    void shouldPlayRock() {
-        assertThat(new RockingPlayer("Player 1").play(), is(PlayerSelection.ROCK));
+    void shouldHaveStringRepresentationAsItsName() {
+        final var name = "Rocking Player";
+
+        assertThat(new RockingPlayer(name).toString(), is(name));
     }
 }

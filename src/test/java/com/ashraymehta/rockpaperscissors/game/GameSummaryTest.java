@@ -49,7 +49,7 @@ class GameSummaryTest {
 
         assertThat(summary.toString(), is("Player 1 selected: ROCK" + System.lineSeparator() +
                 "Player 2 selected: SCISSORS" + System.lineSeparator() +
-                "Winner: Player 1!"));
+                "Winner: Player 1!" + System.lineSeparator()));
     }
 
     @Test

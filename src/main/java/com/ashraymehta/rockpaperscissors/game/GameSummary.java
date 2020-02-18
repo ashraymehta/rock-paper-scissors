@@ -50,6 +50,6 @@ public class GameSummary {
             stringBuilder.append("Nobody won");
         }
 
-        return stringBuilder.toString();
+        return stringBuilder.append(System.lineSeparator()).toString();
     }
 }

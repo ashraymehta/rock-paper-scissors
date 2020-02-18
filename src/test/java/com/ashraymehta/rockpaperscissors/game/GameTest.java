@@ -6,7 +6,7 @@ import com.ashraymehta.rockpaperscissors.players.PlayerSelectionComparator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -42,7 +42,11 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(Collections.emptyMap(), null)));
+        final var expectedGameSummary = new GameSummary(Map.of(
+                firstPlayer, PlayerSelection.ROCK,
+                secondPlayer, PlayerSelection.ROCK
+        ), null);
+        assertThat(gameSummary, is(expectedGameSummary));
     }
 
     @Test
@@ -53,7 +57,11 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(Collections.emptyMap(), firstPlayer)));
+        final var expectedGameSummary = new GameSummary(Map.of(
+                firstPlayer, PlayerSelection.ROCK,
+                secondPlayer, PlayerSelection.SCISSORS
+        ), firstPlayer);
+        assertThat(gameSummary, is(expectedGameSummary));
     }
 
     @Test
@@ -64,6 +72,10 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(Collections.emptyMap(), secondPlayer)));
+        final var expectedGameSummary = new GameSummary(Map.of(
+                firstPlayer, PlayerSelection.SCISSORS,
+                secondPlayer, PlayerSelection.ROCK
+        ), secondPlayer);
+        assertThat(gameSummary, is(expectedGameSummary));
     }
 }

@@ -1,7 +1,11 @@
 package com.ashraymehta.rockpaperscissors.game;
 
+import com.ashraymehta.rockpaperscissors.players.Player;
+import com.ashraymehta.rockpaperscissors.players.PlayerSelection;
 import com.ashraymehta.rockpaperscissors.players.RockingPlayer;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -13,8 +17,13 @@ class GameSummaryTest {
     @Test
     void shouldEquateGameSummaryWithAnotherGameSummary() {
         final var winner = new RockingPlayer();
-        final var aGameSummary = new GameSummary(winner);
-        final var anotherGameSummary = new GameSummary(winner);
+        final var anotherPlayer = new RockingPlayer();
+        final var selections = Map.of(
+                ((Player) winner), PlayerSelection.ROCK,
+                anotherPlayer, PlayerSelection.SCISSORS
+        );
+        final var aGameSummary = new GameSummary(selections, winner);
+        final var anotherGameSummary = new GameSummary(selections, winner);
 
         assertEquals(aGameSummary, anotherGameSummary);
         assertEquals(aGameSummary, aGameSummary);
@@ -22,5 +31,7 @@ class GameSummaryTest {
 
         assertNotEquals(aGameSummary, new Object());
         assertNotEquals(aGameSummary, null);
+        assertNotEquals(aGameSummary, new GameSummary(Map.of(), winner));
+        assertNotEquals(aGameSummary.hashCode(), new GameSummary(Map.of(), winner).hashCode());
     }
 }

@@ -1,14 +1,18 @@
 package com.ashraymehta.rockpaperscissors.game;
 
 import com.ashraymehta.rockpaperscissors.players.Player;
+import com.ashraymehta.rockpaperscissors.players.PlayerSelection;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class GameSummary {
     private final Player winner;
+    private final Map<Player, PlayerSelection> selections;
 
-    public GameSummary(@Nullable Player winner) {
+    public GameSummary(Map<Player, PlayerSelection> selections, @Nullable Player winner) {
+        this.selections = selections;
         this.winner = winner;
     }
 

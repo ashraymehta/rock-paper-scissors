@@ -13,11 +13,11 @@ public class Game {
     public GameSummary start(Player firstPlayer, Player secondPlayer) {
         final var comparisonResult = playerSelectionComparator.compare(firstPlayer.play(), secondPlayer.play());
         if (comparisonResult > 0) {
-            return new GameSummary(firstPlayer);
+            return new GameSummary(null, firstPlayer);
         } else if (comparisonResult < 0) {
-            return new GameSummary(secondPlayer);
+            return new GameSummary(null, secondPlayer);
         } else {
-            return new GameSummary(null);
+            return new GameSummary(null, null);
         }
     }
 }

@@ -40,7 +40,7 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(null)));
+        assertThat(gameSummary, is(new GameSummary(null, null)));
     }
 
     @Test
@@ -51,7 +51,7 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(firstPlayer)));
+        assertThat(gameSummary, is(new GameSummary(null, firstPlayer)));
     }
 
     @Test
@@ -62,6 +62,6 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(secondPlayer)));
+        assertThat(gameSummary, is(new GameSummary(null, secondPlayer)));
     }
 }

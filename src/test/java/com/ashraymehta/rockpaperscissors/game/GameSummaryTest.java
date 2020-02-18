@@ -32,6 +32,7 @@ class GameSummaryTest {
         assertNotEquals(aGameSummary, new Object());
         assertNotEquals(aGameSummary, null);
         assertNotEquals(aGameSummary, new GameSummary(Map.of(), winner));
+        assertNotEquals(aGameSummary, new GameSummary(Map.of(), anotherPlayer));
         assertNotEquals(aGameSummary.hashCode(), new GameSummary(Map.of(), winner).hashCode());
     }
 }

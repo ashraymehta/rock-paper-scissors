@@ -51,4 +51,17 @@ class GameSummaryTest {
                 "Player 2 selected: SCISSORS" + System.lineSeparator() +
                 "Winner: Player 1!"));
     }
+
+    @Test
+    void shouldHaveAStringRepresentationOfGameSummaryIfWinnerIsNull() {
+        final var aPlayer = new RockingPlayer("Player 1");
+        final var anotherPlayer = new RockingPlayer("Player 2");
+
+        final var summary = new GameSummary(Map.of(aPlayer, PlayerSelection.ROCK,
+                anotherPlayer, PlayerSelection.ROCK), null);
+
+        assertThat(summary.toString(), is("Player 1 selected: ROCK" + System.lineSeparator() +
+                "Player 2 selected: SCISSORS" + System.lineSeparator() +
+                "Winner: Nobody won"));
+    }
 }

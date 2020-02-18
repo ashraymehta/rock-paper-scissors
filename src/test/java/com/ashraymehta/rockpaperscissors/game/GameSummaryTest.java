@@ -6,6 +6,7 @@ import com.ashraymehta.rockpaperscissors.players.RandomPlayer;
 import com.ashraymehta.rockpaperscissors.players.RockingPlayer;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,10 +22,9 @@ class GameSummaryTest {
     void shouldEquateGameSummaryWithAnotherGameSummary() {
         final var winner = new RockingPlayer("Player 1");
         final var anotherPlayer = new RockingPlayer("Player 2");
-        final var selections = Map.of(
-                ((Player) winner), PlayerSelection.ROCK,
-                anotherPlayer, PlayerSelection.SCISSORS
-        );
+        final var selections = new LinkedHashMap<Player, PlayerSelection>();
+        selections.put(winner, PlayerSelection.ROCK);
+        selections.put(anotherPlayer, PlayerSelection.SCISSORS);
         final var aGameSummary = new GameSummary(selections, winner);
         final var anotherGameSummary = new GameSummary(selections, winner);
 
@@ -43,9 +43,11 @@ class GameSummaryTest {
     void shouldHaveAStringRepresentationOfGameSummary() {
         final var winner = new RockingPlayer("Player 1");
         final var anotherPlayer = new RandomPlayer("Player 2", mock(Random.class));
+        final var selections = new LinkedHashMap<Player, PlayerSelection>();
+        selections.put(winner, PlayerSelection.ROCK);
+        selections.put(anotherPlayer, PlayerSelection.SCISSORS);
 
-        final var summary = new GameSummary(Map.of(winner, PlayerSelection.ROCK,
-                anotherPlayer, PlayerSelection.SCISSORS), winner);
+        final var summary = new GameSummary(selections, winner);
 
         assertThat(summary.toString(), is("Player 1 selected: ROCK" + System.lineSeparator() +
                 "Player 2 selected: SCISSORS" + System.lineSeparator() +
@@ -56,9 +58,11 @@ class GameSummaryTest {
     void shouldHaveAStringRepresentationOfGameSummaryIfWinnerIsNull() {
         final var aPlayer = new RockingPlayer("Player 1");
         final var anotherPlayer = new RandomPlayer("Player 2", mock(Random.class));
+        final var selections = new LinkedHashMap<Player, PlayerSelection>();
+        selections.put(aPlayer, PlayerSelection.ROCK);
+        selections.put(anotherPlayer, PlayerSelection.SCISSORS);
 
-        final var summary = new GameSummary(Map.of(aPlayer, PlayerSelection.ROCK,
-                anotherPlayer, PlayerSelection.SCISSORS), null);
+        final var summary = new GameSummary(selections, null);
 
         assertThat(summary.toString(), is("Player 1 selected: ROCK" + System.lineSeparator() +
                 "Player 2 selected: SCISSORS" + System.lineSeparator() +

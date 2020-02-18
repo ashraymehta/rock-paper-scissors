@@ -6,6 +6,7 @@ import com.ashraymehta.rockpaperscissors.players.PlayerSelectionComparator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,14 +28,18 @@ class GameTest {
     }
 
     @Test
-    void shouldAskFirstPlayerAndSecondPlayerToPlay() {
+    void shouldAskFirstPlayerAndSecondPlayerToPlayInThatOrder() {
         when(firstPlayer.play()).thenReturn(PlayerSelection.PAPER);
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
 
-        game.start(firstPlayer, secondPlayer);
+        final var summary = game.start(firstPlayer, secondPlayer);
 
         verify(firstPlayer, times(1)).play();
         verify(secondPlayer, times(1)).play();
+        final var selections = new LinkedHashMap<Player, PlayerSelection>();
+        selections.put(firstPlayer, PlayerSelection.PAPER);
+        selections.put(secondPlayer, PlayerSelection.ROCK);
+        assertThat(summary, is(new GameSummary(selections, firstPlayer)));
     }
 
     @Test

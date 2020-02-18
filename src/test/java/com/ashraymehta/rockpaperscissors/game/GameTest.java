@@ -6,6 +6,8 @@ import com.ashraymehta.rockpaperscissors.players.PlayerSelectionComparator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
@@ -40,7 +42,7 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(null, null)));
+        assertThat(gameSummary, is(new GameSummary(Collections.emptyMap(), null)));
     }
 
     @Test
@@ -51,7 +53,7 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(null, firstPlayer)));
+        assertThat(gameSummary, is(new GameSummary(Collections.emptyMap(), firstPlayer)));
     }
 
     @Test
@@ -62,6 +64,6 @@ class GameTest {
 
         final var gameSummary = game.start(firstPlayer, secondPlayer);
 
-        assertThat(gameSummary, is(new GameSummary(null, secondPlayer)));
+        assertThat(gameSummary, is(new GameSummary(Collections.emptyMap(), secondPlayer)));
     }
 }

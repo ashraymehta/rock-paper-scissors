@@ -2,6 +2,7 @@ package com.ashraymehta.rockpaperscissors.game;
 
 import com.ashraymehta.rockpaperscissors.players.Player;
 import com.ashraymehta.rockpaperscissors.players.PlayerSelection;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -11,7 +12,7 @@ public class GameSummary {
     private final Player winner;
     private final Map<Player, PlayerSelection> selections;
 
-    public GameSummary(Map<Player, PlayerSelection> selections, @Nullable Player winner) {
+    public GameSummary(@NotNull Map<Player, PlayerSelection> selections, @Nullable Player winner) {
         this.selections = selections;
         this.winner = winner;
     }
@@ -21,11 +22,12 @@ public class GameSummary {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameSummary that = (GameSummary) o;
-        return Objects.equals(winner, that.winner);
+        return Objects.equals(winner, that.winner) &&
+                selections.equals(that.selections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(winner);
+        return Objects.hash(winner, selections);
     }
 }

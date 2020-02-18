@@ -1,4 +1,4 @@
-package com.ashraymehta.rockpaperscissors;
+package com.ashraymehta.rockpaperscissors.game;
 
 import com.ashraymehta.rockpaperscissors.players.Player;
 import com.ashraymehta.rockpaperscissors.players.PlayerSelection;

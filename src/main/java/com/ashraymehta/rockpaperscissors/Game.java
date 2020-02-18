@@ -2,6 +2,8 @@ package com.ashraymehta.rockpaperscissors;
 
 import com.ashraymehta.rockpaperscissors.players.Player;
 
+import java.util.Optional;
+
 public class Game {
     private final Player firstPlayer;
     private final Player secondPlayer;
@@ -11,8 +13,9 @@ public class Game {
         this.secondPlayer = secondPlayer;
     }
 
-    public void start() {
+    public Optional<Player> start() {
         firstPlayer.play();
         secondPlayer.play();
+        return null;
     }
 }

@@ -11,6 +11,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:19.0.0'
+
     testImplementation 'org.mockito:mockito-junit-jupiter:3.2.4'
     testImplementation 'com.spotify:hamcrest-optional:1.1.5'
 

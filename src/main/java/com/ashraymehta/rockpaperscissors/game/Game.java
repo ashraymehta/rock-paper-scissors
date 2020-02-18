@@ -1,9 +1,10 @@
 package com.ashraymehta.rockpaperscissors.game;
 
 import com.ashraymehta.rockpaperscissors.players.Player;
+import com.ashraymehta.rockpaperscissors.players.PlayerSelection;
 import com.ashraymehta.rockpaperscissors.players.PlayerSelectionComparator;
 
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class Game {
     private final PlayerSelectionComparator playerSelectionComparator;
@@ -13,7 +14,9 @@ public class Game {
     }
 
     public GameSummary start(Player firstPlayer, Player secondPlayer) {
-        final var selections = Map.of(firstPlayer, firstPlayer.play(), secondPlayer, secondPlayer.play());
+        final var selections = new LinkedHashMap<Player, PlayerSelection>();
+        selections.put(firstPlayer, firstPlayer.play());
+        selections.put(secondPlayer, secondPlayer.play());
 
         final var comparisonResult = playerSelectionComparator.compare(selections.get(firstPlayer),
                 selections.get(secondPlayer));

@@ -39,7 +39,7 @@ class GameTest {
         final var selections = new LinkedHashMap<Player, PlayerSelection>();
         selections.put(firstPlayer, PlayerSelection.PAPER);
         selections.put(secondPlayer, PlayerSelection.ROCK);
-        assertThat(summary, is(new GameSummary(selections, firstPlayer)));
+        assertThat(summary, is(new GameSummary(selections, null)));
     }
 
     @Test

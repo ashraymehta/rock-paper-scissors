@@ -20,8 +20,15 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
 
+def mainClass = 'com.ashraymehta.rockpaperscissors.App'
 application {
-    mainClassName = 'com.ashraymehta.rockpaperscissors.App'
+    mainClassName = mainClass
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': mainClass)
+    }
 }
 
 test {

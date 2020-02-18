@@ -12,7 +12,7 @@ public class Game {
         this.playerSelectionComparator = playerSelectionComparator;
     }
 
-    public Optional<Player> start(Player firstPlayer, Player secondPlayer) {
+    public Optional<Player> determineWinner(Player firstPlayer, Player secondPlayer) {
         final var comparisonResult = playerSelectionComparator.compare(firstPlayer.play(), secondPlayer.play());
         if (comparisonResult > 0) {
             return Optional.of(firstPlayer);

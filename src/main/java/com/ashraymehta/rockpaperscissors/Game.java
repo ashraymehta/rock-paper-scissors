@@ -20,7 +20,10 @@ public class Game {
         final var comparisonResult = playerSelectionComparator.compare(firstPlayer.play(), secondPlayer.play());
         if (comparisonResult > 0) {
             return Optional.of(firstPlayer);
+        } else if (comparisonResult < 0) {
+            return Optional.of(secondPlayer);
+        } else {
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 }

@@ -2,6 +2,7 @@ package com.ashraymehta.rockpaperscissors;
 
 import com.ashraymehta.rockpaperscissors.players.Player;
 import com.ashraymehta.rockpaperscissors.players.PlayerSelection;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.spotify.hamcrest.optional.OptionalMatchers.emptyOptional;
@@ -10,13 +11,19 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
 class GameTest {
+    private Game game;
+    private Player firstPlayer;
+    private Player secondPlayer;
+
+    @BeforeEach
+    void setUp() {
+        firstPlayer = mock(Player.class);
+        secondPlayer = mock(Player.class);
+        game = new Game(firstPlayer, secondPlayer);
+    }
 
     @Test
     void shouldAskFirstPlayerAndSecondPlayerToPlay() {
-        final var firstPlayer = mock(Player.class);
-        final var secondPlayer = mock(Player.class);
-        final var game = new Game(firstPlayer, secondPlayer);
-
         game.start();
 
         verify(firstPlayer, times(1)).play();
@@ -25,9 +32,6 @@ class GameTest {
 
     @Test
     void shouldDetermineTheWinnerAsNobodyIfTheFirstPlayerAndSecondPlayerPlayTheSameThing() {
-        final var firstPlayer = mock(Player.class);
-        final var secondPlayer = mock(Player.class);
-        final var game = new Game(firstPlayer, secondPlayer);
         when(firstPlayer.play()).thenReturn(PlayerSelection.ROCK);
         when(secondPlayer.play()).thenReturn(PlayerSelection.ROCK);
 
